@@ -12,8 +12,6 @@ import json
 import vlc
 from threading import Timer
 import time
-import pickle
-import inspect
 
 # changes I want to make:
 # remove vlc dependency
@@ -62,7 +60,7 @@ class MainWindow(tk.CTk):
     # create a canvas to hold covers
     self.cover_canvas = tk.CTkCanvas(self, width=600, height=250, bg="#242424", highlightthickness=0)
     self.cover_canvas.place(relx=0.5, rely=0.45, anchor="center")
-    self.cover_frame = tk.CTkFrame(self.cover_canvas, fg_color="#ffffff", width=600, height=250)
+    self.cover_frame = tk.CTkFrame(self.cover_canvas,width=600, height=250)
     self.cover_frame.grid_columnconfigure(0, weight=1)
     self.cover_canvas.create_window((0, 0), window=self.cover_frame, anchor="nw")
     self.left_to_right(self.get_all_covers())
