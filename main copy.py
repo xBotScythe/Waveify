@@ -18,7 +18,8 @@ import inspect
 # changes I want to make:
 # remove vlc dependency
 # use ffmpeg to convert to wav
-# add animation to login window
+# add animation to login window (done)
+# create seperate windows 
 # find way to host api key in cloud
 
 #Create a spotify thingy
@@ -41,6 +42,7 @@ token = oauth_object.get_access_token(as_dict=False)
 sp = spotipy.Spotify(auth=token)
 playlists = sp.current_user_playlists(limit=50)
 
+# window handles logging in to spotify
 class MainWindow(tk.CTk):
   #initilize the window/app
   def __init__(self):
@@ -48,7 +50,7 @@ class MainWindow(tk.CTk):
     super().__init__()
     self.check_if_directory_exists('saves')
     self.geometry("600x500")
-    self.title("Waveify")
+    self.title("Waveify 1.0.0")
     self.finalTrackList = []
     self.resizable(False, False)
     tk.set_default_color_theme("theme.json")
@@ -68,10 +70,11 @@ class MainWindow(tk.CTk):
     self.cover_canvas.configure(scrollregion=self.cover_canvas.bbox("all"))
     self.scroll_canvas()
     # get playlist btn
-    self.getPlaylistBtn = tk.CTkButton(self, width=200, height=50, text="Get Playlists", command=self.getPlaylists, corner_radius=30, fg_color="#51D75B", text_color="#1e1e1e")
+    self.getPlaylistBtn = tk.CTkButton(self, width=200, height=50, text="Sign in with Spotify", command=self.getPlaylists, corner_radius=30, fg_color="#51D75B", text_color="#1e1e1e")
     self.getPlaylistBtn.place(relx=0.5, rely=0.85, anchor="center")
     self.song_name_lbl = None
     self.song_artist_lbl = None
+    
     
   def check_if_directory_exists(self, dir_name):
     if os.path.isdir(dir_name) != True:

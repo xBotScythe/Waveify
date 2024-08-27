@@ -18,8 +18,6 @@ import inspect
 # changes I want to make:
 # remove vlc dependency
 # use ffmpeg to convert to wav
-# add animation to login window (done)
-# create seperate windows 
 # find way to host api key in cloud
 
 #Create a spotify thingy
@@ -55,8 +53,6 @@ class MainWindow(tk.CTk):
     self.resizable(False, False)
     tk.set_default_color_theme("theme.json")
     tk.set_appearance_mode("dark")
-    tk.set_widget_scaling(1.5)
-    tk.set_window_scaling(1.5)
     # loads likes and dislikes
     self.likedSongs = self.load_saved_tracks('./saves/liked_songs.json')
     self.dislikedSongs = self.load_saved_tracks('./saves/disliked_songs.json')
@@ -132,12 +128,7 @@ class MainWindow(tk.CTk):
     playlistInfo.append(self.getPlaylistUri(playlists))
     playlistNames.append(self.getPlaylistName(playlists))
     print(playlistInfo)
-    self.show_urlbox()
     self.displayPlaylists()
-    
-  def show_urlbox(self):
-    url_frame = tk.CTkFrame(self, fg_color="#696969", width=540, height=50)
-    url_frame.place(relx=0.05, rely=0.1, anchor="nw")
         
 # displays playlists
   def displayPlaylists(self):
